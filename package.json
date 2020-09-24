@@ -6,11 +6,11 @@
   "homepage": "",
   "repository": {
     "type": "git",
-    "url": "https://github.com/rash3ye/react-simplified-commons"
+    "url": "https://github.com/conquext/react-simplified-commons"
   },
   "funding": {
     "type": "github",
-    "url": "https://github.com/sponsors/rash3ye"
+    "url": "https://github.com/sponsors/conquext"
   },
   "keywords": [
     "react",
