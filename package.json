@@ -1,22 +1,24 @@
 {
-  "name": "react-table",
-  "version": "7.0.5",
-  "description": "Hooks for building lightweight, fast and extendable datagrids for React",
+  "name": "react-simplified-commons",
+  "version": "0.0.1",
+  "description": "Common react utilities. Includes table, dropdown and file upload.",
   "license": "MIT",
-  "homepage": "https://react-table.tanstack.com",
+  "homepage": "",
   "repository": {
     "type": "git",
-    "url": "https://github.com/tannerlinsley/react-table"
+    "url": "https://github.com/rash3ye/react-simplified-commons"
   },
   "funding": {
     "type": "github",
-    "url": "https://github.com/sponsors/tannerlinsley"
+    "url": "https://github.com/sponsors/rash3ye"
   },
   "keywords": [
     "react",
     "table",
     "react-table",
-    "datagrid"
+    "datagrid",
+    "react-file-upload",
+    "file-upload"
   ],
   "main": "index.js",
   "scripts": {
@@ -58,8 +60,10 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/react-hooks": "^3.2.1",
+    "axios": "^0.20.0",
     "babel-eslint": "9.x",
     "babel-jest": "^24.9.0",
+    "clsx": "^1.1.1",
     "core-js": "3.4.1",
     "cross-env": "^6.0.3",
     "docz": "^2.2.0",
@@ -77,6 +81,8 @@
     "eslint-plugin-react": "7.16.0",
     "eslint-plugin-react-hooks": "2.3.0",
     "eslint-plugin-standard": "^4.0.1",
+    "formik": "^2.1.5",
+    "framer-motion": "^2.7.1",
     "gatsby-theme-docz": "^2.2.0",
     "is-ci-cli": "^2.0.0",
     "jest": "^24.9.0",
@@ -86,11 +92,16 @@
     "jest-watch-select-projects": "^1.0.0",
     "jest-watch-typeahead": "^0.4.2",
     "lint-staged": "^9.4.3",
+    "match-sorter": "^4.2.1",
+    "namor": "^2.0.2",
     "prettier": "^1.19.1",
     "prop-types": "^15.5.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "react-icons": "^3.11.0",
+    "react-loadingmask": "^4.0.6",
     "react-test-renderer": "^16.13.0",
+    "react-toastify": "^6.0.8",
     "rollup": "^1.32.1",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-commonjs": "^10.1.0",
@@ -99,6 +110,8 @@
     "rollup-plugin-size": "^0.2.1",
     "rollup-plugin-size-snapshot": "^0.10.0",
     "rollup-plugin-terser": "^5.1.2",
-    "serve": "^11.2.0"
+    "serve": "^11.2.0",
+    "xlsx": "^0.16.7",
+    "yup": "^0.29.3"
   }
 }

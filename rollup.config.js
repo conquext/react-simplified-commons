@@ -14,15 +14,18 @@ export default [
   {
     input: 'src/index.js',
     output: {
-      name: 'ReactTable',
-      file: 'dist/react-table.development.js',
+      name: 'ReactSimplifiedCommons',
+      file: 'dist/react-simplified-commons.development.js',
       format: 'umd',
       sourcemap: true,
       globals,
     },
     external,
     plugins: [
-      replace({ 'process.env.NODE_ENV': `"development"`, delimiters: ['', ''] }),
+      replace({
+        'process.env.NODE_ENV': `"development"`,
+        delimiters: ['', ''],
+      }),
       babel(),
       externalDeps(),
     ],
@@ -30,8 +33,8 @@ export default [
   {
     input: 'src/index.js',
     output: {
-      name: 'ReactTable',
-      file: 'dist/react-table.production.min.js',
+      name: 'ReactSimplifiedCommons',
+      file: 'dist/react-simplified-commons.production.min.js',
       format: 'umd',
       sourcemap: true,
       globals,
