@@ -1,4 +1,6 @@
 export const users = [
+  'Myself 😛',
+  'My friends 🙄',
   'Intuit',
   'Google',
   'Amazon',

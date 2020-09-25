@@ -10,11 +10,15 @@ const external = [
   'clsx',
   'react-table',
   'styled-components',
+  'match-sorter',
 ]
 
 const globals = {
   react: 'React',
   'styled-components': 'styled',
+  'match-sorter': 'matchSorter',
+  clsx: 'clsx',
+  'react-toastify': 'toast',
 }
 
 export default [

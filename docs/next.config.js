@@ -21,7 +21,7 @@ const remarkPlugins = [
   require('remark-images'),
   [
     require('remark-github'),
-    { repository: 'https://github.com/tannerlinsley/react-table' },
+    { repository: 'https://github.com/conquext/react-simplified-commons' },
   ],
   require('remark-unwrap-images'),
   [

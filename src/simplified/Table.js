@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import {
+import * as reactTable from 'react-table'
+import { motion, AnimatePresence } from 'framer-motion'
+import matchSorter from 'match-sorter'
+import styled from 'styled-components'
+import { isEmpty } from './helpers'
+
+const {
   useTable,
   usePagination,
   useRowSelect,
@@ -8,11 +14,7 @@ import {
   useColumnOrder,
   useGlobalFilter,
   useAsyncDebounce,
-} from 'react-table'
-import { motion, AnimatePresence } from 'framer-motion'
-import matchSorter from 'match-sorter'
-import styled from 'styled-components'
-import { isEmpty } from './helpers'
+} = reactTable
 
 const Styles = styled.div``
 
@@ -422,4 +424,4 @@ function Table({
   )
 }
 
-export { useAsyncDebounce, matchSorter }
+export { reactTable, useAsyncDebounce, matchSorter }
