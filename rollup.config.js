@@ -6,19 +6,19 @@ import replace from '@rollup/plugin-replace'
 
 const external = [
   'react',
-  'react-toastify',
-  'clsx',
-  'react-table',
-  'styled-components',
-  'match-sorter',
+  // 'react-toastify',
+  // 'clsx',
+  // 'react-table',
+  // 'styled-components',
+  // 'match-sorter',
 ]
 
 const globals = {
   react: 'React',
-  'styled-components': 'styled',
-  'match-sorter': 'matchSorter',
-  clsx: 'clsx',
-  'react-toastify': 'toast',
+  // 'styled-components': 'styled',
+  // 'match-sorter': 'matchSorter',
+  // clsx: 'clsx',
+  // 'react-toastify': 'toast',
 }
 
 export default [
