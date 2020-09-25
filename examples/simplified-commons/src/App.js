@@ -13,7 +13,6 @@ import { SiMinutemailer } from 'react-icons/si'
 import { MdMore, MdDelete } from 'react-icons/md'
 import { deleteUser, getUsers, inviteUser } from './api'
 
-
 import Checkbox from '@components/Checkbox'
 import Dropdown from '@components/Dropdown'
 import TableComponent, {
@@ -22,10 +21,7 @@ import TableComponent, {
 } from '@components/Table'
 import UploadComponent from '@components/FileUpload'
 
-
-import {makeData, isEmpty} from './helpers'
-
-
+import { makeData, isEmpty } from './helpers'
 
 const editableFields = ['firstName', 'lastName', 'email']
 
@@ -92,7 +88,7 @@ function GlobalFilter({
 }) {
   const count = preGlobalFilteredRows.length
   const [value, setValue] = useState(globalFilter)
-  const onChange = useAsyncDebounce((value) => {
+  const onChange = useAsyncDebounce(value => {
     setGlobalFilter(value || undefined)
   }, 200)
 
@@ -101,7 +97,7 @@ function GlobalFilter({
       Search:{' '}
       <input
         value={value || ''}
-        onChange={(e) => {
+        onChange={e => {
           setValue(e.target.value)
           onChange(e.target.value)
         }}
@@ -125,36 +121,36 @@ function DefaultColumnFilter({
   return (
     <input
       value={filterValue || ''}
-      onChange={(e) => {
+      onChange={e => {
         setFilter(e.target.value || undefined) // Set undefined to remove the filter entirely
       }}
       placeholder={`Search ${count} records...`}
     />
   )
 }
-  const fontSize = 24
-  const Icon = ({ type = 'rocket', className = '', style = {} } = {}) => (
-    <i className={`fas fa-${type} ${className}`} style={style} />
-  )
+const fontSize = 24
+const Icon = ({ type = 'rocket', className = '', style = {} } = {}) => (
+  <i className={`fas fa-${type} ${className}`} style={style} />
+)
 
-  const RocketHor = (
-    <Icon
-      type="rocket"
-      className="animation-horizon"
-      style={{ fontSize, color: '#120338' }}
-    />
-  )
+const RocketHor = (
+  <Icon
+    type="rocket"
+    className="animation-horizon"
+    style={{ fontSize, color: '#120338' }}
+  />
+)
 
 const tableWrapper = styled.form`
   table {
     border-collapse: separate;
     border-style: 1em;
-    border-spacing: 1em;    
+    border-spacing: 1em;
 
     thead tr {
       :nth-child(1) {
         display: none;
-      }     
+      }
       background: none !important;
       border-radius: none !important;
     }
@@ -168,7 +164,7 @@ const tableWrapper = styled.form`
         box-shadow: 0 3px 6px rgba(0, 0, 0, 0.57), 0 2px 4px rgba(0, 0, 0, 0.05);
         transition: transform 0.5s -webkit-transform 0.5s;
         :last-child {
-          border-radius: 1rem;          
+          border-radius: 1rem;
         }
       }
     }
@@ -176,7 +172,7 @@ const tableWrapper = styled.form`
     th,
     td {
       margin: 0;
-      padding: 0.5rem;     
+      padding: 0.5rem;
 
       :last-child {
         border-right: 0;
@@ -190,101 +186,100 @@ const tableWrapper = styled.form`
 `
 
 function App() {
-const data = React.useMemo(() => makeData(20), [])
-const [pageLoading, setPageLoading] = useState(false)
-const [inlinePageLoading, setInlinePageLoading] = useState(false)
+  const data = React.useMemo(() => makeData(20), [])
+  const [pageLoading, setPageLoading] = useState(false)
+  const [inlinePageLoading, setInlinePageLoading] = useState(false)
 
-const columns = useMemo(
-  () => [
-    {
-      Header: 'Table',
-      columns: [
-        {
-          Header: 'First Name',
-          accessor: 'firstName',
-        },
-        {
-          Header: 'Last Name',
-          accessor: 'lastName',
-        },
-        {
-          Header: 'Email',
-          accessor: 'email',
-        },
-      ],
-    },
-    {
-      Header: 'Test Info',
-      columns: [
-        {
-          Header: 'Invite Sent',
-          accessor: 'inviteSent',
-        },
-        {
-          Header: 'Test Sent',
-          accessor: 'testSent',
-        },
-        {
-          Header: 'Test Status',
-          accessor: 'testStatus',
-        },
-      ],
-    },
-  ],
-  []
-)
-const spring = React.useMemo(
-  () => ({
-    type: 'spring',
-    damping: 50,
-    stiffness: 100,
-  }),
-  []
-)
-const filterTypes = useMemo(
-  () => ({
-    // Add a new fuzzyTextFilterFn filter type.
-    fuzzyText: fuzzyTextFilterFn,
-    // Or, override the default text filter to use
-    // "startWith"
-    text: (rows, id, filterValue) => {
-      return rows.filter(row => {
-        const rowValue = row.values[id]
-        return rowValue !== undefined
-          ? String(rowValue)
-              .toLowerCase()
-              .startsWith(String(filterValue).toLowerCase())
-          : true
+  const columns = useMemo(
+    () => [
+      {
+        Header: 'Table',
+        columns: [
+          {
+            Header: 'First Name',
+            accessor: 'firstName',
+          },
+          {
+            Header: 'Last Name',
+            accessor: 'lastName',
+          },
+          {
+            Header: 'Email',
+            accessor: 'email',
+          },
+        ],
+      },
+      {
+        Header: 'Test Info',
+        columns: [
+          {
+            Header: 'Invite Sent',
+            accessor: 'inviteSent',
+          },
+          {
+            Header: 'Test Sent',
+            accessor: 'testSent',
+          },
+          {
+            Header: 'Test Status',
+            accessor: 'testStatus',
+          },
+        ],
+      },
+    ],
+    []
+  )
+  const spring = React.useMemo(
+    () => ({
+      type: 'spring',
+      damping: 50,
+      stiffness: 100,
+    }),
+    []
+  )
+  const filterTypes = useMemo(
+    () => ({
+      // Add a new fuzzyTextFilterFn filter type.
+      fuzzyText: fuzzyTextFilterFn,
+      // Or, override the default text filter to use
+      // "startWith"
+      text: (rows, id, filterValue) => {
+        return rows.filter(row => {
+          const rowValue = row.values[id]
+          return rowValue !== undefined
+            ? String(rowValue)
+                .toLowerCase()
+                .startsWith(String(filterValue).toLowerCase())
+            : true
+        })
+      },
+    }),
+    []
+  )
+
+  const sendInvite = async (e, xdata) => {
+    e.preventDefault()
+    const resp = await inviteUser([xdata])
+    if (resp) {
+      const currentData = data.map(d => {
+        if (d.email === xdata.email) d.inviteSent = 'Yes'
+        return d
       })
-    },
-  }),
-  []
-)
-
- const sendInvite = async (e, xdata) => {
-   e.preventDefault()
-   const resp = await inviteUser([xdata])
-   if (resp) {
-     const currentData = data.map(d => {
-       if (d.email === xdata.email) d.inviteSent = 'Yes'
-       return d
-     })
-     toast.success('User invited successfully')
-     setData(currentData)
-   }
- }
-
- 
-const getAndSetUsers = async () => {
-  setPageLoading(true)
-
-  const dataX = (await getUsers())
-  const data = dataX?.data
-  if (!isEmpty(data)) {
-    setData(Array.from(data))
+      toast.success('User invited successfully')
+      setData(currentData)
+    }
   }
-  setPageLoading(false)
-}
+
+  const getAndSetUsers = async () => {
+    setPageLoading(true)
+
+    const dataX = await getUsers()
+    const data = dataX?.data
+    if (!isEmpty(data)) {
+      setData(Array.from(data))
+    }
+    setPageLoading(false)
+  }
 
   useEffect(() => {
     getAndSetUsers()
@@ -293,16 +288,16 @@ const getAndSetUsers = async () => {
   const uploadDatabase = (file, type) => {
     setInlinePageLoading(true)
     switch (type) {
-      case 'spreadsheet':       
+      case 'spreadsheet':
         const f = file.selectedFile[0]
         const reader = new FileReader()
         const stateData = data
-        reader.onload = async function (e) {
+        reader.onload = async function(e) {
           const data = e.target.result
           const readedData = XLSX.read(data, { type: 'binary' })
           const wsname = readedData.SheetNames[0]
           const ws = readedData.Sheets[wsname]
-          
+
           const dataParse = XLSX.utils.sheet_to_json(ws, { raw: true })
 
           const fieldNames = [
@@ -315,7 +310,7 @@ const getAndSetUsers = async () => {
             'testStatus',
             'subRows',
           ]
-          const newDataSet = dataParse.map((d) => {
+          const newDataSet = dataParse.map(d => {
             const pos = Object.keys(d)
             fieldNames.forEach((name, i) => {
               if (name !== 'Serial No') {
@@ -346,9 +341,9 @@ const getAndSetUsers = async () => {
     setInlinePageLoading(false)
   }
 
-  const deleteRecord = async (row) => {
+  const deleteRecord = async row => {
     setInlinePageLoading(true)
-    const { data: update } = (await deleteUser(row.original)) as any
+    const { data: update } = await deleteUser(row.original)
     toast.success('Deleted Successfully')
     setData(update)
     setInlinePageLoading(false)
@@ -363,8 +358,8 @@ const getAndSetUsers = async () => {
     []
   )
 
-  const renderTableHooks = (hooks) => {
-    hooks.visibleColumns.push((columns) => [
+  const renderTableHooks = hooks => {
+    hooks.visibleColumns.push(columns => [
       // Let's make a column for selection
       {
         id: 'selection',
@@ -407,13 +402,13 @@ const getAndSetUsers = async () => {
     ])
   }
 
-  const renderTableHeader = (column) => {
+  const renderTableHeader = column => {
     const header = column.render('Header')
     return <React.Fragment>{header}</React.Fragment>
   }
 
   const renderTableRow = (page, prepareRow) => {
-    const renderTableCell = (cell) => {
+    const renderTableCell = cell => {
       if (cell.column.id === 'inviteSent') {
         if (cell.row?.values?.inviteSent?.toLowerCase() === 'no') {
           return (
@@ -431,7 +426,7 @@ const getAndSetUsers = async () => {
                       <span
                         className="cursor-pointer text-primary hover:underline"
                         title="components"
-                        onClick={(e) => {
+                        onClick={e => {
                           e.stopPropagation()
                           sendInvite(e, cell.row.values)
                         }}
@@ -457,8 +452,7 @@ const getAndSetUsers = async () => {
               </span>
             </div>
           )
-                      }
-        else {
+        } else {
           return (
             <div className="inline-flex items-center justify-center w-full align-middle group">
               <span className="text-green-600">{cell.render('Cell')}</span>
@@ -473,8 +467,7 @@ const getAndSetUsers = async () => {
               {cell.render('Cell')}
             </div>
           )
-        }
-        else {
+        } else {
           return (
             <div className="inline-flex items-center justify-center w-full text-green-600">
               {cell.render('Cell')}
@@ -489,8 +482,7 @@ const getAndSetUsers = async () => {
               {cell.render('Cell')}
             </div>
           )
-        }
-        else{
+        } else {
           return (
             <div className="inline-flex items-center justify-center w-full text-green-600">
               {cell.render('Cell')}
@@ -522,7 +514,7 @@ const getAndSetUsers = async () => {
                     {...cell.getCellProps({
                       layoutTransition: spring,
                     })}
-                    className="text-center"                    
+                    className="text-center"
                   >
                     {renderTableCell
                       ? renderTableCell(cell)
@@ -532,7 +524,7 @@ const getAndSetUsers = async () => {
               })}
             </motion.tr>
           )
-        })}        
+        })}
       </React.Fragment>
     )
   }
@@ -619,14 +611,14 @@ const getAndSetUsers = async () => {
     )
   }
 
-  const handleBatchActions = (controls) => {
+  const handleBatchActions = controls => {
     const { state: tableState, selectedFlatRows } = controls
     const { selectedRowIds } = tableState
     const selectedLen = Object.keys(selectedRowIds || {}).length
 
-    const selectedMembers = selectedFlatRows.map((d) => d.original)
+    const selectedMembers = selectedFlatRows.map(d => d.original)
     const uninvitedMembers = selectedMembers.filter(
-      (d) => d['inviteSent']?.toLowerCase() === 'no'
+      d => d['inviteSent']?.toLowerCase() === 'no'
     )
     const uninvitedLen = uninvitedMembers.length
 
@@ -642,7 +634,7 @@ const getAndSetUsers = async () => {
             {uninvitedLen > 0 && (
               <div>
                 <button
-                  onClick={(e) => {
+                  onClick={e => {
                     e.stopPropagation()
                     sendInvite(e, uninvitedMembers)
                   }}
@@ -661,12 +653,12 @@ const getAndSetUsers = async () => {
                 'xlsx',
                 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
               ]}
-              // autoUpload={true}              
-              render={(el) => {
+              // autoUpload={true}
+              render={el => {
                 return (
                   <span
                     className="flex justify-end w-full px-4 py-2 border cursor-pointer hover:text-primary-lighter hover:border-primary-darker text-primary"
-                    onClick={(e) => {
+                    onClick={e => {
                       e.preventDefault()
                       el && el.click()
                     }}
@@ -679,7 +671,7 @@ const getAndSetUsers = async () => {
               uploadHandler={(data, state, cb) => {
                 uploadDatabase(state, 'spreadsheet')
               }}
-            />            
+            />
           </React.Fragment>
         )}
       </div>
@@ -705,8 +697,6 @@ const getAndSetUsers = async () => {
     setInlinePageLoading(false)
   }
 
-
- 
   return (
     <LoadingMask
       loading={inlinePageLoading}
@@ -714,88 +704,84 @@ const getAndSetUsers = async () => {
       indicator={RocketHor}
     >
       <div style={{ width: '100vw', height: '100vh' }}>
-        
-          <ToastContainer />
-          
-          <h3 className="mb-2 text-lg font-bolder">
-            Demo Table and File Upload
-          </h3>
-          <p className="p-2 text-xs text-blue-600">
-            You can upload a spreadsheet (.xls, .xlsx), and use the checkbox to
-            send invite to multiple selections at a go or You can send
-            individual invite by toggling the inviteSent on hover.
-          </p>
-          <em className="p-2 text-xs text-green-600 ">
-            (Excel columns must include firstName, lastName, age and so on in
-            that format)
-          </em>
-          <p className="p-2 text-xs text-blue-600">
-            You can edit a row inline by clicking on the data or add a new
-            record.
-          </p>
-          <span className="p-2 text-xs text-red-700">
-            Not mobile responsive yet{' '}
-            <span role="img" aria-label="sad">
-              😥
-            </span>
-          </span>
+        <ToastContainer />
 
-          <div>
-            <Formik
-              initialValues={{ fName: '', lName: '', email: '' }}
-              onSubmit={handleFormSubmit}
-              validateOnBlur={false}
-              validateOnMount={false}
-              validationSchema={Yup.object({
-                fName: Yup.string()
-                  .min(3, 'Must contain 3 characters or more')
-                  .required('First Name is required'),
-                lName: Yup.string()
-                  .min(3, 'Must contain 3 characters or more')
-                  .required('Last Name is required'),
-                email: Yup.string()
-                  .email('Invalid email address')
-                  .required('Please provide the email'),
-              })}
-            >
-              {(formikProps) => (
-                <TableComponent
-                  columns={columns}
-                  data={data}
-                  setData={setData}
-                  tableClassName="w-full"
-                  filterTypes={filterTypes}
-                  defaultColumn={defaultColumn}
-                  globalFilter={{
-                    use: true,
-                    Component: GlobalFilter,
-                    pos: 'below',
-                  }}
-                  renderHeader={renderTableHeader}
-                  // renderFilter= {(column: unknown) => JSX.Element}
-                  // renderTableBody={renderTableBody}
-                  renderTableRow={renderTableRow}
-                  renderExtraTableTd={(controls) =>
-                    renderExtraTableTd(controls, formikProps)
-                  }
-                  loading={pageLoading}
-                  // renderTableCell= {(cell: unknown) => JSX.Element}
-                  handleTableControls={{ jsx: handleBatchActions }}
-                  tableWrapper={{
-                    use: true,
-                    wrapper: tableWrapper,
-                    props: {
-                      onSubmit: formikProps.handleSubmit,
-                    },
-                  }}
-                  customHook={renderTableHooks}
-                />
-              )}
-            </Formik>
-          </div>
+        <h3 className="mb-2 text-lg font-bolder">Demo Table and File Upload</h3>
+        <p className="p-2 text-xs text-blue-600">
+          You can upload a spreadsheet (.xls, .xlsx), and use the checkbox to
+          send invite to multiple selections at a go or You can send individual
+          invite by toggling the inviteSent on hover.
+        </p>
+        <em className="p-2 text-xs text-green-600 ">
+          (Excel columns must include firstName, lastName, age and so on in that
+          format)
+        </em>
+        <p className="p-2 text-xs text-blue-600">
+          You can edit a row inline by clicking on the data or add a new record.
+        </p>
+        <span className="p-2 text-xs text-red-700">
+          Not mobile responsive yet{' '}
+          <span role="img" aria-label="sad">
+            😥
+          </span>
+        </span>
+
+        <div>
+          <Formik
+            initialValues={{ fName: '', lName: '', email: '' }}
+            onSubmit={handleFormSubmit}
+            validateOnBlur={false}
+            validateOnMount={false}
+            validationSchema={Yup.object({
+              fName: Yup.string()
+                .min(3, 'Must contain 3 characters or more')
+                .required('First Name is required'),
+              lName: Yup.string()
+                .min(3, 'Must contain 3 characters or more')
+                .required('Last Name is required'),
+              email: Yup.string()
+                .email('Invalid email address')
+                .required('Please provide the email'),
+            })}
+          >
+            {formikProps => (
+              <TableComponent
+                columns={columns}
+                data={data}
+                setData={setData}
+                tableClassName="w-full"
+                filterTypes={filterTypes}
+                defaultColumn={defaultColumn}
+                globalFilter={{
+                  use: true,
+                  Component: GlobalFilter,
+                  pos: 'below',
+                }}
+                renderHeader={renderTableHeader}
+                // renderFilter= {(column: unknown) => JSX.Element}
+                // renderTableBody={renderTableBody}
+                renderTableRow={renderTableRow}
+                renderExtraTableTd={controls =>
+                  renderExtraTableTd(controls, formikProps)
+                }
+                loading={pageLoading}
+                // renderTableCell= {(cell: unknown) => JSX.Element}
+                handleTableControls={{ jsx: handleBatchActions }}
+                tableWrapper={{
+                  use: true,
+                  wrapper: tableWrapper,
+                  props: {
+                    onSubmit: formikProps.handleSubmit,
+                  },
+                }}
+                customHook={renderTableHooks}
+              />
+            )}
+          </Formik>
+        </div>
       </div>
     </LoadingMask>
-    )
+  )
 }
 
 export default App

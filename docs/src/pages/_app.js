@@ -25,7 +25,7 @@ function MyApp({ Component, pageProps }) {
   }, [])
 
   return (
-    <>
+    <React.Fragment>
       <Head>
         <link
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
@@ -51,7 +51,7 @@ function MyApp({ Component, pageProps }) {
       <SearchProvider>
         <Component {...pageProps} />
       </SearchProvider>
-    </>
+    </React.Fragment>
   )
 }
 
