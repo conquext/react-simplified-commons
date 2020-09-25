@@ -1,6 +1,6 @@
 {
   "name": "react-simplified-commons",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Common react utilities. Includes table, dropdown and file upload.",
   "license": "MIT",
   "homepage": "",

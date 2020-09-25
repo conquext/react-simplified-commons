@@ -1,4 +1,4 @@
-name: react-table tests
+name: react-simplified-commons tests
 
 on:
   push:

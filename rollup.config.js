@@ -4,10 +4,17 @@ import size from 'rollup-plugin-size'
 import externalDeps from 'rollup-plugin-peer-deps-external'
 import replace from '@rollup/plugin-replace'
 
-const external = ['react']
+const external = [
+  'react',
+  'react-toastify',
+  'clsx',
+  'react-table',
+  'styled-components',
+]
 
 const globals = {
   react: 'React',
+  'styled-components': 'styled',
 }
 
 export default [
