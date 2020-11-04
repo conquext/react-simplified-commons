@@ -116,6 +116,11 @@
               "editUrl": "/docs/examples/basic.mdx"
             },
             {
+              "title": "Simplified Commons",
+              "path": "/docs/examples/simplified",
+              "editUrl": "/docs/examples/simplified.mdx"
+            },
+            {
               "title": "Footers",
               "path": "/docs/examples/footers",
               "editUrl": "/docs/examples/footers.mdx"

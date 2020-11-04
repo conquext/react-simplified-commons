@@ -37,7 +37,7 @@ export default function UploadComponent({
   uploadHandler,
 }) {
   const [state, setState] = useState(initialState)
-  const [runAutoUpload, setAutoUpload] = useState(false)
+  const [runAutoUpload, setAutoUpload] = useState(autoUpload)
   const [load, reload] = useState(false)
 
   function updateState(update) {
@@ -128,10 +128,13 @@ export default function UploadComponent({
         }
         const newfileUpdate = files
         newfileUpdate[currentIndex] = filesData
-        updateState({
-          files: newfileUpdate,
-          selectedFile: lState.selectedFile,
-        })
+
+        const newState = state
+        newState.files - newfileUpdate
+        newState.selectedFile = lState.selectedFile
+
+        if (runAutoUpload) onClickHandler(newState)
+        updateState(newState)
       }
     })
     reader.readAsDataURL(file)
@@ -175,8 +178,6 @@ export default function UploadComponent({
       }
     } catch (err) {
       console.log('err', err)
-    } finally {
-      setAutoUpload(false)
     }
   }
 
@@ -188,7 +189,6 @@ export default function UploadComponent({
   useEffect(() => {
     dc.current = document
     uploadArea.current = document.querySelector(uploadDom)
-    if (runAutoUpload) onClickHandler(state)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [runAutoUpload, uploadDomRef.current])
 
