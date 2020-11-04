@@ -26,9 +26,11 @@ Hooks for building **lightweight, fast and extendable datagrids** for React
 
 [Live Example](http://rewarddemo.herokuapp.com/)
 
+[Contact me on twitter](https://twitter.com/rash3ye)
+
 ````
 
-    import {Table, Upload} from 'react-simplified-commons'
+    import {Table, Upload, Popdown} from 'react-simplified-commons'
 
     <Table
         columns={columns}
@@ -61,6 +63,37 @@ Hooks for building **lightweight, fast and extendable datagrids** for React
         }}
         customHook={renderTableHooks}
     />
+
+        <Popdown
+          buttonLabel={<span className="self-center hidden text-default text-sm md:flex">
+                        Table of contents
+                      </span>}
+          className="relative outline-none cursor-pointer"
+          childrenClass="absolute z-50 p-2 mt-1 space-y-2 bg-white border rounded shadow-md top-10"
+          addButtonClass="outline-none p-1"
+          overrideButtonClass={(showDropdown) => "p-2 rounded-full cursor-pointer border-none outline-none"}
+        >
+          <div>
+            <ul className="w-56 px-2 py-2 space-y-4 text-sm">
+              <li>
+                <div className="flex flex-col text-sm">
+                  <p className="text-left">Table of Content</p>
+
+                  <p className="text-xs text-left text-default">
+                    Filter by Sections or Headers
+                  </p>
+                </div>
+              </li>
+              <li>
+                <hr className="my-2 dark:border-gray-700" />
+              </li>
+              {contentsLists &&
+                contentsLists.map((coll: any) => (
+                  <li key={coll.email}>{/* //the content */}</li>
+                ))}
+            </ul>
+          </div>
+        </Popdown>
 
 
     <Upload
